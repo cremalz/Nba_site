@@ -1,152 +1,122 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NBA Today</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Inter:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <!-- NAV -->
-    <nav>
-      <a class="nav-logo" href="#">NBA <span>Today</span></a>
-      <ul class="nav-links">
-        <li><a href="#jogos">Jogos</a></li>
-        <li><a href="#classificacao">Classificação</a></li>
-        <li><a href="#assistente">Assistente</a></li>
-      </ul>
-      <div class="nav-dot" id="live-indicator" style="display: none"></div>
-    </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NBA Today</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-ghost" id="ghost-number">24</div>
-      <div class="hero-eyebrow">
-        <span class="hero-badge">Temporada 2025–26</span>
-        <span class="hero-season">NBA · Playoffs</span>
-      </div>
-      <h1 class="hero-title">
-        Tudo da<br /><span class="accent">NBA</span><br />Agora.
-      </h1>
-      <p class="hero-desc">
-        Placares ao vivo, classificação e um assistente especializado em
-        basquete — tudo em um só lugar.
-      </p>
-      <div class="hero-stats">
-        <div>
-          <span class="hero-stat-val" id="stat-games">–</span>
-          <span class="hero-stat-label">Jogos hoje</span>
-        </div>
-        <div>
-          <span class="hero-stat-val" id="stat-live">–</span>
-          <span class="hero-stat-label">Ao vivo</span>
-        </div>
-        <div>
-          <span class="hero-stat-val">30</span>
-          <span class="hero-stat-label">Times</span>
-        </div>
-      </div>
-    </section>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">NBA <span>Today</span></a>
+    <ul class="nav-links">
+      <li><a href="#jogos">Jogos</a></li>
+      <li><a href="#classificacao">Classificação</a></li>
+      <li><a href="#assistente">Assistente</a></li>
+    </ul>
+    <div class="nav-dot" id="live-indicator" style="display:none"></div>
+  </nav>
 
-    <!-- JOGOS -->
-    <section class="section" id="jogos">
-      <div class="section-head">
-        <div>
-          <div class="section-label">Resultados</div>
-          <div class="section-title">Jogos de hoje</div>
-        </div>
-        <div class="date-label" id="date-label"></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-ghost" id="ghost-number">24</div>
+    <div class="hero-eyebrow">
+      <span class="hero-badge">Temporada 2025–26</span>
+      <span class="hero-season">NBA · Playoffs</span>
+    </div>
+    <h1 class="hero-title">Tudo da<br><span class="accent">NBA</span><br>Agora.</h1>
+    <p class="hero-desc">Placares ao vivo, classificação e um assistente especializado em basquete — tudo em um só lugar.</p>
+    <div class="hero-stats">
+      <div>
+        <span class="hero-stat-val" id="stat-games">–</span>
+        <span class="hero-stat-label">Jogos hoje</span>
       </div>
-      <div class="games-list" id="games-list">
-        <div class="skel" style="height: 68px"></div>
-        <div class="skel" style="height: 68px; opacity: 0.6"></div>
-        <div class="skel" style="height: 68px; opacity: 0.3"></div>
+      <div>
+        <span class="hero-stat-val" id="stat-live">–</span>
+        <span class="hero-stat-label">Ao vivo</span>
       </div>
-    </section>
+      <div>
+        <span class="hero-stat-val">30</span>
+        <span class="hero-stat-label">Times</span>
+      </div>
+    </div>
+  </section>
 
-    <!-- CLASSIFICAÇÃO -->
-    <section class="section" id="classificacao">
-      <div class="section-head">
-        <div>
-          <div class="section-label">Tabela</div>
-          <div class="section-title">Classificação</div>
-        </div>
-        <div class="date-label">Top 8 por conferência</div>
+  <!-- JOGOS -->
+  <section class="section" id="jogos">
+    <div class="section-head">
+      <div>
+        <div class="section-label">Resultados</div>
+        <div class="section-title">Jogos de hoje</div>
       </div>
-      <div class="standings-wrap" id="standings-wrap">
-        <div>
-          <div class="conf-label">Leste</div>
-          <div class="skel" style="height: 240px; margin-top: 8px"></div>
-        </div>
-        <div>
-          <div class="conf-label">Oeste</div>
-          <div class="skel" style="height: 240px; margin-top: 8px"></div>
-        </div>
-      </div>
-    </section>
+      <div class="date-label" id="date-label"></div>
+    </div>
+    <div class="games-list" id="games-list">
+      <div class="skel" style="height:68px"></div>
+      <div class="skel" style="height:68px;opacity:.6"></div>
+      <div class="skel" style="height:68px;opacity:.3"></div>
+    </div>
+  </section>
 
-    <!-- CHATBOT -->
-    <section class="chat-section" id="assistente">
-      <div class="section-label" style="margin-bottom: 4px">IA Esportiva</div>
-      <div class="section-title" style="margin-bottom: 1.25rem">
-        Assistente NBA
+  <!-- CLASSIFICAÇÃO -->
+  <section class="section" id="classificacao">
+    <div class="section-head">
+      <div>
+        <div class="section-label">Tabela</div>
+        <div class="section-title">Classificação</div>
       </div>
-      <div class="chat-wrap">
-        <div class="chat-messages" id="chat-messages">
-          <div class="msg bot">
-            <div class="msg-avatar">N</div>
-            <div class="msg-bubble">
-              Olá! Sou seu assistente especializado em NBA. Pode me perguntar
-              sobre times, jogadores, estatísticas ou histórico — só não me peça
-              para falar de futebol! 🏀
-            </div>
-          </div>
-        </div>
-        <div class="chat-suggestions">
-          <button class="suggestion" onclick="sendSuggestion(this)">
-            Quem lidera pontos na NBA?
-          </button>
-          <button class="suggestion" onclick="sendSuggestion(this)">
-            Histórico das Finals
-          </button>
-          <button class="suggestion" onclick="sendSuggestion(this)">
-            Melhor time de todos os tempos?
-          </button>
-          <button class="suggestion" onclick="sendSuggestion(this)">
-            Regras do basquete
-          </button>
-        </div>
-        <div class="chat-input-row">
-          <input
-            class="chat-input"
-            id="chat-input"
-            type="text"
-            placeholder="Pergunte sobre NBA..."
-            maxlength="300"
-          />
-          <button class="chat-send" id="chat-send" onclick="sendMessage()">
-            Enviar
-          </button>
-        </div>
+      <div class="date-label">Top 8 por conferência</div>
+    </div>
+    <div class="standings-wrap" id="standings-wrap">
+      <div>
+        <div class="conf-label">Leste</div>
+        <div class="skel" style="height:240px;margin-top:8px"></div>
       </div>
-    </section>
+      <div>
+        <div class="conf-label">Oeste</div>
+        <div class="skel" style="height:240px;margin-top:8px"></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- FOOTER -->
-    <footer>
-      <a class="footer-logo" href="#">NBA <span>Today</span></a>
-      <div class="footer-meta">
-        Dados via ESPN API · Assistente via Claude (Anthropic)<br />
-        Uso não-comercial — logos e dados são propriedade da NBA/ESPN
+  <!-- CHATBOT -->
+  <section class="chat-section" id="assistente">
+    <div class="section-label" style="margin-bottom:4px">IA Esportiva</div>
+    <div class="section-title" style="margin-bottom:1.25rem">Assistente NBA</div>
+    <div class="chat-wrap">
+      <div class="chat-messages" id="chat-messages">
+        <div class="msg bot">
+          <div class="msg-avatar">N</div>
+          <div class="msg-bubble">Olá! Sou seu assistente especializado em NBA. Pode me perguntar sobre times, jogadores, estatísticas ou histórico — só não me peça para falar de futebol! 🏀</div>
+        </div>
       </div>
-    </footer>
+      <div class="chat-suggestions">
+        <button class="suggestion" onclick="sendSuggestion(this)">Quem lidera pontos na NBA?</button>
+        <button class="suggestion" onclick="sendSuggestion(this)">Histórico das Finals</button>
+        <button class="suggestion" onclick="sendSuggestion(this)">Melhor time de todos os tempos?</button>
+        <button class="suggestion" onclick="sendSuggestion(this)">Regras do basquete</button>
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chat-input" type="text" placeholder="Pergunte sobre NBA..." maxlength="300">
+        <button class="chat-send" id="chat-send" onclick="sendMessage()">Enviar</button>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- FOOTER -->
+  <footer>
+    <a class="footer-logo" href="#">NBA <span>Today</span></a>
+    <div class="footer-meta">
+      Dados via ESPN API · Assistente via Claude (Anthropic)<br>
+      Uso não-comercial — logos e dados são propriedade da NBA/ESPN
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
-
