@@ -169,7 +169,26 @@ async function loadStandings() {
   }
 }
 
-// ── CHATBOT ──────────────────────────────────────────────────
+// ── CHAT WIDGET TOGGLE ───────────────────────────────────────
+function toggleChat() {
+  const panel = document.getElementById('chat-panel');
+  const fabOpen = document.querySelector('.fab-open');
+  const fabClose = document.querySelector('.fab-close');
+  const badge = document.getElementById('fab-badge');
+
+  const isOpen = panel.classList.toggle('open');
+  fabOpen.style.display = isOpen ? 'none' : 'inline';
+  fabClose.style.display = isOpen ? 'inline' : 'none';
+  badge.style.display = 'none';
+
+  if (isOpen) {
+    setTimeout(() => document.getElementById('chat-input').focus(), 250);
+  }
+}
+
+
+const GEMINI_KEY = 'SUA_KEY_AQUI'; // aistudio.google.com → Get API Key
+
 const SYSTEM = `Você é um assistente especializado exclusivamente em NBA e basquete.
 Responda APENAS perguntas sobre NBA: times, jogadores, estatísticas, regras, história, playoffs, Draft, records e curiosidades.
 Se a pergunta não for sobre basquete ou NBA, diga educadamente: "Só posso ajudar com assuntos de NBA e basquete!"
@@ -184,7 +203,7 @@ function appendMsg(role, text, isTyping = false) {
   const div = document.createElement('div');
   div.className = `msg ${role === 'user' ? 'user' : 'bot'}`;
   div.innerHTML = `
-    <div class="msg-avatar">${role === 'user' ? '👤' : 'N'}</div>
+    <div class="msg-avatar">${role === 'user' ? '👤' : 'G'}</div>
     <div class="msg-bubble ${isTyping ? 'typing' : ''}">${text}</div>`;
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
@@ -207,27 +226,28 @@ async function sendMessage() {
   const typingEl = appendMsg('bot', 'Digitando…', true);
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': 'SUA_KEY_AQUI',
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 600,
-        system: SYSTEM,
-        messages: chatHistory
-      })
-    });
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: SYSTEM }] },
+          contents: chatHistory.map(m => ({
+            role: m.role === 'assistant' ? 'model' : 'user',
+            parts: [{ text: m.content }]
+          }))
+        })
+      }
+    );
     const data = await res.json();
-    const reply = data.content?.[0]?.text || 'Desculpe, não consegui processar sua pergunta.';
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text
+      || 'Desculpe, não consegui processar sua pergunta.';
     typingEl.querySelector('.msg-bubble').textContent = reply;
     typingEl.querySelector('.msg-bubble').classList.remove('typing');
     chatHistory.push({ role: 'assistant', content: reply });
   } catch {
-    typingEl.querySelector('.msg-bubble').textContent = 'Erro ao conectar. Tente novamente.';
+    typingEl.querySelector('.msg-bubble').textContent = 'Erro ao conectar. Verifique sua API key.';
   }
 
   isSending = false;

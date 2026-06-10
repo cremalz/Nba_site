@@ -17,7 +17,6 @@
     <ul class="nav-links">
       <li><a href="#jogos">Jogos</a></li>
       <li><a href="#classificacao">Classificação</a></li>
-      <li><a href="#assistente">Assistente</a></li>
     </ul>
     <div class="nav-dot" id="live-indicator" style="display:none"></div>
   </nav>
@@ -84,30 +83,6 @@
     </div>
   </section>
 
-  <!-- CHATBOT -->
-  <section class="chat-section" id="assistente">
-    <div class="section-label" style="margin-bottom:4px">IA Esportiva</div>
-    <div class="section-title" style="margin-bottom:1.25rem">Assistente NBA</div>
-    <div class="chat-wrap">
-      <div class="chat-messages" id="chat-messages">
-        <div class="msg bot">
-          <div class="msg-avatar">N</div>
-          <div class="msg-bubble">Olá! Sou seu assistente especializado em NBA. Pode me perguntar sobre times, jogadores, estatísticas ou histórico — só não me peça para falar de futebol! 🏀</div>
-        </div>
-      </div>
-      <div class="chat-suggestions">
-        <button class="suggestion" onclick="sendSuggestion(this)">Quem lidera pontos na NBA?</button>
-        <button class="suggestion" onclick="sendSuggestion(this)">Histórico das Finals</button>
-        <button class="suggestion" onclick="sendSuggestion(this)">Melhor time de todos os tempos?</button>
-        <button class="suggestion" onclick="sendSuggestion(this)">Regras do basquete</button>
-      </div>
-      <div class="chat-input-row">
-        <input class="chat-input" id="chat-input" type="text" placeholder="Pergunte sobre NBA..." maxlength="300">
-        <button class="chat-send" id="chat-send" onclick="sendMessage()">Enviar</button>
-      </div>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer>
     <a class="footer-logo" href="#">NBA <span>Today</span></a>
@@ -116,6 +91,56 @@
       Uso não-comercial — logos e dados são propriedade da NBA/ESPN
     </div>
   </footer>
+
+  <!-- FLOATING CHAT WIDGET -->
+  <div class="chat-widget" id="chat-widget">
+
+    <!-- Botão de abrir/fechar -->
+    <button class="chat-fab" id="chat-fab" onclick="toggleChat()" aria-label="Assistente NBA">
+      <span class="fab-icon fab-open">🏀</span>
+      <span class="fab-icon fab-close" style="display:none">✕</span>
+      <span class="fab-badge" id="fab-badge" style="display:none"></span>
+    </button>
+
+    <!-- Painel do chat -->
+    <div class="chat-panel" id="chat-panel">
+      <div class="chat-panel-header">
+        <div class="chat-panel-title">
+          <span class="chat-panel-avatar">G</span>
+          <div>
+            <div class="chat-panel-name">Assistente NBA</div>
+            <div class="chat-panel-status" id="chat-status">Online · Gemini</div>
+          </div>
+        </div>
+        <button class="chat-panel-close" onclick="toggleChat()">✕</button>
+      </div>
+
+      <!-- Fita em construção -->
+      <div class="under-construction">
+        <span class="uc-icon">🚧</span>
+        <span class="uc-text">Em construção</span>
+        <span class="uc-dot"></span>
+      </div>
+
+      <div class="chat-messages" id="chat-messages">
+        <div class="msg bot">
+          <div class="msg-avatar">G</div>
+          <div class="msg-bubble">Olá! Sou seu assistente especializado em NBA. Pode me perguntar sobre times, jogadores, estatísticas ou histórico — só não me peça para falar de futebol! 🏀</div>
+        </div>
+      </div>
+
+      <div class="chat-suggestions">
+        <button class="suggestion" onclick="sendSuggestion(this)">Quem lidera pontos?</button>
+        <button class="suggestion" onclick="sendSuggestion(this)">Histórico das Finals</button>
+        <button class="suggestion" onclick="sendSuggestion(this)">Melhor time ever?</button>
+      </div>
+
+      <div class="chat-input-row">
+        <input class="chat-input" id="chat-input" type="text" placeholder="Pergunte sobre NBA..." maxlength="300">
+        <button class="chat-send" id="chat-send" onclick="sendMessage()">↑</button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
