@@ -1,181 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Popup Estilizado</title>
-<style>
-/* ======== ESTILO BASE ======== */
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #111;
-  color: white;
-  font-family: 'Lato', sans-serif;
-}
-.container {
-  text-align: center;
-}
-.wrapper {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  background: none;
-  color: white;
-  transition: 0.3s;
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NBA Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a class="nav-logo" href="#">NBA <span>Today</span></a>
+      <ul class="nav-links">
+        <li><a href="#jogos">Jogos</a></li>
+        <li><a href="#classificacao">Classificação</a></li>
+        <li><a href="#assistente">Assistente</a></li>
+      </ul>
+      <div class="nav-dot" id="live-indicator" style="display: none"></div>
+    </nav>
 
-/* ======== ESTILO DO BOTÃO LINK ======== */
-.link_wrapper {
-  position: relative;
-  display: inline-block;
-  margin-top: 10px;
-}
-
-a {
-  display: block;
-  width: 250px;
-  height: 50px;
-  line-height: 50px;
-  font-weight: bold;
-  text-decoration: none;
-  background: #333;
-  text-align: center;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: 3px solid #333;
-  transition: all .35s;
-}
-
-.icon {
-  width: 50px;
-  height: 50px;
-  border: 3px solid transparent;
-  position: absolute;
-  transform: rotate(45deg);
-  right: 0;
-  top: 0;
-  z-index: -1;
-  transition: all .35s;
-}
-
-.icon svg {
-  width: 30px;
-  position: absolute;
-  top: calc(50% - 15px);
-  left: calc(50% - 15px);
-  transform: rotate(-45deg);
-  fill: #CA202D;
-  transition: all .35s;
-}
-
-a:hover {
-  width: 200px;
-  border: 3px solid #004A9F;
-  background: transparent;
-  color: #004A9F;
-}
-
-a:hover + .icon {
-  border: 3px solid #CA202D;
-  right: -25%;
-}
-
-/* ======== POPUP ======== */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(6px);
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  transition: 0.3s ease-in-out;
-}
-.modal.active {
-  display: flex;
-}
-.modal-content {
-  background: #222;
-  border: 2px solid #CA202D;
-  border-radius: 12px;
-  padding: 30px;
-  width: 320px;
-  max-width: 90%;
-  text-align: center;
-  box-shadow: 0 0 25px rgba(202,32,45,0.6);
-  animation: popupAnim .4s ease forwards;
-}
-@keyframes popupAnim {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  } to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 22px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: #CA202D;
-  transition: 0.3s;
-}
-.close-btn:hover {
-  transform: scale(1.2);
-  color: #fff;
-}
-</style>
-</head>
-<body>
-
-<div class="container">
-  <button class="wrapper" id="abrirPopup">Abrir Pop-up</button>
-</div>
-
-<!-- ======== POPUP ======== -->
-<div class="modal" id="popup">
-  <div class="modal-content">
-    <button class="close-btn" id="fecharPopup">✕</button>
-    <h2>Bem-vindo ao Pop-up!</h2>
-    <p>Esse é um pop-up estilizado com seu design moderno 😎</p>
-
-    <div class="link_wrapper">
-      <a href="#">Continuar</a>
-      <div class="icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
-          <path d="M10 17l5-5-5-5v10z"></path>
-        </svg>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-ghost" id="ghost-number">24</div>
+      <div class="hero-eyebrow">
+        <span class="hero-badge">Temporada 2025–26</span>
+        <span class="hero-season">NBA · Playoffs</span>
       </div>
-    </div>
-  </div>
-</div>
+      <h1 class="hero-title">
+        Tudo da<br /><span class="accent">NBA</span><br />Agora.
+      </h1>
+      <p class="hero-desc">
+        Placares ao vivo, classificação e um assistente especializado em
+        basquete — tudo em um só lugar.
+      </p>
+      <div class="hero-stats">
+        <div>
+          <span class="hero-stat-val" id="stat-games">–</span>
+          <span class="hero-stat-label">Jogos hoje</span>
+        </div>
+        <div>
+          <span class="hero-stat-val" id="stat-live">–</span>
+          <span class="hero-stat-label">Ao vivo</span>
+        </div>
+        <div>
+          <span class="hero-stat-val">30</span>
+          <span class="hero-stat-label">Times</span>
+        </div>
+      </div>
+    </section>
 
-<script>
-const popup = document.getElementById('popup');
-const abrir = document.getElementById('abrirPopup');
-const fechar = document.getElementById('fecharPopup');
+    <!-- JOGOS -->
+    <section class="section" id="jogos">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Resultados</div>
+          <div class="section-title">Jogos de hoje</div>
+        </div>
+        <div class="date-label" id="date-label"></div>
+      </div>
+      <div class="games-list" id="games-list">
+        <div class="skel" style="height: 68px"></div>
+        <div class="skel" style="height: 68px; opacity: 0.6"></div>
+        <div class="skel" style="height: 68px; opacity: 0.3"></div>
+      </div>
+    </section>
 
-abrir.addEventListener('click', () => popup.classList.add('active'));
-fechar.addEventListener('click', () => popup.classList.remove('active'));
+    <!-- CLASSIFICAÇÃO -->
+    <section class="section" id="classificacao">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Tabela</div>
+          <div class="section-title">Classificação</div>
+        </div>
+        <div class="date-label">Top 8 por conferência</div>
+      </div>
+      <div class="standings-wrap" id="standings-wrap">
+        <div>
+          <div class="conf-label">Leste</div>
+          <div class="skel" style="height: 240px; margin-top: 8px"></div>
+        </div>
+        <div>
+          <div class="conf-label">Oeste</div>
+          <div class="skel" style="height: 240px; margin-top: 8px"></div>
+        </div>
+      </div>
+    </section>
 
-popup.addEventListener('click', e => {
-  if (e.target === popup) popup.classList.remove('active');
-});
-</script>
+    <!-- CHATBOT -->
+    <section class="chat-section" id="assistente">
+      <div class="section-label" style="margin-bottom: 4px">IA Esportiva</div>
+      <div class="section-title" style="margin-bottom: 1.25rem">
+        Assistente NBA
+      </div>
+      <div class="chat-wrap">
+        <div class="chat-messages" id="chat-messages">
+          <div class="msg bot">
+            <div class="msg-avatar">N</div>
+            <div class="msg-bubble">
+              Olá! Sou seu assistente especializado em NBA. Pode me perguntar
+              sobre times, jogadores, estatísticas ou histórico — só não me peça
+              para falar de futebol! 🏀
+            </div>
+          </div>
+        </div>
+        <div class="chat-suggestions">
+          <button class="suggestion" onclick="sendSuggestion(this)">
+            Quem lidera pontos na NBA?
+          </button>
+          <button class="suggestion" onclick="sendSuggestion(this)">
+            Histórico das Finals
+          </button>
+          <button class="suggestion" onclick="sendSuggestion(this)">
+            Melhor time de todos os tempos?
+          </button>
+          <button class="suggestion" onclick="sendSuggestion(this)">
+            Regras do basquete
+          </button>
+        </div>
+        <div class="chat-input-row">
+          <input
+            class="chat-input"
+            id="chat-input"
+            type="text"
+            placeholder="Pergunte sobre NBA..."
+            maxlength="300"
+          />
+          <button class="chat-send" id="chat-send" onclick="sendMessage()">
+            Enviar
+          </button>
+        </div>
+      </div>
+    </section>
 
-</body>
+    <!-- FOOTER -->
+    <footer>
+      <a class="footer-logo" href="#">NBA <span>Today</span></a>
+      <div class="footer-meta">
+        Dados via ESPN API · Assistente via Claude (Anthropic)<br />
+        Uso não-comercial — logos e dados são propriedade da NBA/ESPN
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
 </html>
+
